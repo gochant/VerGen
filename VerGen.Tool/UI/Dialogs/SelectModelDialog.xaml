@@ -1,0 +1,35 @@
+﻿<infrastructure:SelectWindow x:Class="VerGen.Tool.UI.Dialogs.SelectModelDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:infrastructure="clr-namespace:VerGen.Tool.UI.Infrastructure"
+        mc:Ignorable="d"
+        Title="选择概念模型" Height="310" Width="250" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Assets/CommonResource.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel Margin="10">
+        <CheckBox Content="全选/反选" x:Name="ChkSelectAll" Click="ChkSelectAll_Click" />
+        <ListView x:Name="LvConceptModelSelect" Height="200" SelectionMode="Multiple" Margin="0,5,0,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Path=Name}" />
+                        <TextBlock Text=" - "/>
+                        <TextBlock Text="{Binding Path=ModelName}" />
+                        <TextBlock Text=" ("/>
+                        <TextBlock Text="{Binding Path=Display}" />
+                        <TextBlock Text=")"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="BtnOk" Content="确定" Margin="0,5,0,0" Style="{StaticResource BtnDialog}" HorizontalAlignment="Right" Click="BtnOk_Click" />
+    </StackPanel>
+
+</infrastructure:SelectWindow>

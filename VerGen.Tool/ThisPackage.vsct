@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidVerGenPackage">
+
+    <Groups>
+      
+      <!--项目菜单组-->
+      <!--<Group guid="guidVerGenPackageCmdSet" id="ProjectMenuGroup" priority="0x0100">
+        <Parent guid="guidVerGenPackageCmdSet" id="IDM_VS_CTXT_PROJNODE" />
+      </Group>-->
+
+      <!--<Group guid="guidVerGenPackageCmdSet" id="ProjectMenuItemsGroup" priority="0x0100">
+        <Parent guid="guidVerGenPackageCmdSet" id="ProjectMenu" />
+      </Group>-->
+      
+      <Group guid="guidVerGenPackageCmdSet" id="ItemMenuGroup" priority="0x0100">
+        <Parent guid="guidVerGenPackageCmdSet" id="IDM_VS_CTXT_ITEMNODE" />
+      </Group>
+
+      <Group guid="guidVerGenPackageCmdSet" id="ItemMenuItemsGroup" priority="0x0200">
+        <Parent guid="guidVerGenPackageCmdSet" id="ItemMenu" />
+      </Group>
+
+
+    </Groups>
+
+    <Menus>
+
+      <!--项目内的项菜单-->
+      <Menu guid="guidVerGenPackageCmdSet" id="ItemMenu" priority="0x0100" type="Menu">
+        <Parent guid="guidVerGenPackageCmdSet" id="ItemMenuGroup" />
+        <Strings>
+          <CommandName>VerGen</CommandName>
+          <ButtonText>VerGen</ButtonText>
+        </Strings>
+      </Menu>
+
+      <!--项目菜单-->
+      <Menu guid="guidVerGenPackageCmdSet" id="ProjectMenu" priority="0x0100" type="Menu">
+        <Parent guid="guidVerGenPackageCmdSet" id="ProjectMenuGroup" />
+        <Strings>
+          <CommandName>VerGen</CommandName>
+          <ButtonText>VerGen</ButtonText>
+        </Strings>
+      </Menu>
+
+    </Menus>
+
+    <Buttons>
+
+      <Button guid="guidVerGenPackageCmdSet" id="ManageBusinessModel" priority="0x0100" type="Button">
+        <Parent guid="guidVerGenPackageCmdSet" id="ItemMenuItemsGroup" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <CommandName>ManageBusinessModel</CommandName>
+          <ButtonText>管理业务模型</ButtonText>
+        </Strings>
+      </Button>
+
+
+    </Buttons>
+
+    <!-- 定义command使用的位图.-->
+    <!--<Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\Command1.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
+    </Bitmaps>-->
+  </Commands>
+
+  <CommandPlacements>
+
+    <CommandPlacement guid="guidVerGenPackageCmdSet" id="ItemMenuGroup" priority="0x100">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE" />
+    </CommandPlacement>
+
+    <CommandPlacement guid="guidVerGenPackageCmdSet" id="ProjectMenuGroup" priority="0x100">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
+    </CommandPlacement>
+
+  </CommandPlacements>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidVerGenPackage" value="{11d43966-4828-4bfb-bb2a-c1fd046d8fb2}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidVerGenPackageCmdSet" value="{48187f2b-dcad-419c-a226-bebdf737dd1c}">
+      <IDSymbol name="ProjectMenu" value="0x1000" />
+      <IDSymbol name="ItemMenu" value="0x1001" />
+
+      <IDSymbol name="ProjectMenuGroup" value="0x0100" />
+      <IDSymbol name="ProjectMenuItemsGroup" value="0x0101" />
+      <IDSymbol name="ItemMenuGroup" value="0x0102" />
+      <IDSymbol name="ItemMenuItemsGroup" value="0x0103" />
+
+      <IDSymbol name="PrecompileEntityDataModelViews" value="0x0004" />
+
+
+      <!-- Project Menu Entries -->
+      <IDSymbol name="ManageBusinessModel" value="0x0005" />
+
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{1233cead-f5e9-44fb-8b5f-fd3f8d79fb5a}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

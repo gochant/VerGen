@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC2FB02D-BF26-4EC8-BBC6-54F2660F021B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VerGen</RootNamespace>
+    <AssemblyName>VerGen</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ext\BMCExtensions.cs" />
+    <Compile Include="Enums\ComponentType.cs" />
+    <Compile Include="Ext\TextTemplateExtensions.cs" />
+    <Compile Include="Schema\Infrastructure\IDataAnnontationAttrDefine.cs" />
+    <Compile Include="Schema\Infrastructure\IFieldAttrDefine.cs" />
+    <Compile Include="Schema\Infrastructure\UserStory.cs" />
+    <Compile Include="Schema\Infrastructure\ViewModelBase.cs" />
+    <Compile Include="Schema\Models\BusinessModelContainer.cs" />
+    <Compile Include="Schema\Models\BusinessModelPackage.cs" />
+    <Compile Include="Schema\Models\CodeConfig.cs" />
+    <Compile Include="Schema\Models\CommonModelDefine.cs" />
+    <Compile Include="Schema\Models\CrudUserStory.cs" />
+    <Compile Include="Schema\Models\CustomAttrDefine.cs" />
+    <Compile Include="Schema\Models\DataTypeAttrDefine.cs" />
+    <Compile Include="Schema\Models\DisplayAttrDefine.cs" />
+    <Compile Include="Schema\Models\DisplayFieldAttrDefine.cs" />
+    <Compile Include="Schema\Models\DisplayFormatAttrDefine.cs" />
+    <Compile Include="Schema\Models\FieldAttrDefine.cs" />
+    <Compile Include="Schema\Models\FieldMapping.cs" />
+    <Compile Include="Schema\Models\ModelFieldDefine.cs" />
+    <Compile Include="Schema\Models\RangeAttrDefine.cs" />
+    <Compile Include="Schema\Models\RegExpAttrDefine.cs" />
+    <Compile Include="Schema\Models\RequiredAttrDefine.cs" />
+    <Compile Include="Schema\Models\StringLengthAttrDefine.cs" />
+    <Compile Include="Schema\Models\UIHintAttrDefine.cs" />
+    <Compile Include="Schema\Models\ViewModelDefine.cs" />
+    <Compile Include="Schema\Models\ViewModelFieldDefine.cs" />
+    <Compile Include="TemplateParameters\ITemplateParameter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateParameters\ControllerParameter.cs" />
+    <Compile Include="TemplateParameters\DtoParameter.cs" />
+    <Compile Include="TemplateParameters\IControllerParameter.cs" />
+    <Compile Include="TemplateParameters\IEntityParameter.cs" />
+    <Compile Include="TemplateParameters\IServiceParameter.cs" />
+    <Compile Include="TemplateParameters\MapProfileParameter.cs" />
+    <Compile Include="TemplateParameters\ParameterFactory.cs" />
+    <Compile Include="TemplateParameters\PropertyParameter.cs" />
+    <Compile Include="TemplateParameters\ServiceParameter.cs" />
+    <Compile Include="Utility\EdmMetadataLoader.cs" />
+    <Compile Include="Utility\TypeHelper.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Key.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
