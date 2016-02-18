@@ -35,7 +35,7 @@
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border>
+            <Border Padding="0,0,3,0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
@@ -45,6 +45,7 @@
                         <ToolBarPanel Orientation="Horizontal">
                             <Button ToolTip="同步" fa:Awesome.Content="Refresh" Style="{StaticResource BtnIcon}" />
                             <WrapPanel Visibility="{Binding Path=CurrentPackage, Converter={StaticResource ObjectToVisibilityConverter} }">
+                                <Button ToolTip="修正" fa:Awesome.Content="Wrench" Style="{StaticResource BtnIcon}" Command="{Binding FixedPackageCommand}"  />
                                 <Button ToolTip="删除" fa:Awesome.Content="Remove" Style="{StaticResource BtnIcon}" Command="{Binding DeletePackageCommand}" />
                             </WrapPanel>
                         </ToolBarPanel>
@@ -55,6 +56,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>
+                                    <TextBlock Text="{Binding Path=Invalid, Converter={StaticResource InvalidToStringConverter}}" />
                                     <TextBlock Text="{Binding Path=Name}" />
                                     <TextBlock Text=" ("/>
                                     <TextBlock Text="{Binding Path=Display}" />
@@ -90,9 +92,9 @@
                                 <Border Style="{StaticResource ToolbarBorder}">
                                     <ToolBarPanel Orientation="Horizontal">
                                         <Button ToolTip="新增计算字段" fa:Awesome.Content="Plus" Style="{StaticResource BtnIcon}" Command="{Binding AddFieldCommand}"  />
-                                        <Button ToolTip="同步" fa:Awesome.Content="Refresh" Style="{StaticResource BtnIcon}"  />
+                                        <Button ToolTip="同步" fa:Awesome.Content="Refresh" Style="{StaticResource BtnIcon}" Command="{Binding SyncCommand}"  />
                                         <WrapPanel Visibility="{Binding CurrentField, Converter={StaticResource ObjectToVisibilityConverter} }">
-                                            <Button x:Name="BtnFixField" ToolTip="修正" fa:Awesome.Content="Wrench" Style="{StaticResource BtnIcon}"  />
+                                            <Button x:Name="BtnFixField" ToolTip="修正" fa:Awesome.Content="Wrench" Style="{StaticResource BtnIcon}" Command="{Binding FixedFieldCommand}"  />
                                             <Button ToolTip="删除" fa:Awesome.Content="Remove" Style="{StaticResource BtnIcon}" Command="{Binding Path=DeleteFieldCommand}"  />
                                         </WrapPanel>
                                     </ToolBarPanel>
@@ -104,6 +106,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
+                                                <TextBlock Text="{Binding Path=Invalid, Converter={StaticResource InvalidToStringConverter}}" />
                                                 <TextBlock Text="{Binding Path=Name}" />
                                                 <TextBlock Text=" ("/>
                                                 <TextBlock Text="{Binding Path=Display.Name}" />

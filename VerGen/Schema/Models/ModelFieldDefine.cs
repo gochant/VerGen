@@ -17,8 +17,16 @@ namespace VerGen.Schema.Models
         private bool isKey;
         private string associatedField;
         private EdmProperty edmProperty;
+        private bool invalid;
 
         #region Properties, Indexers
+
+        [XmlIgnore]
+        public bool Invalid
+        {
+            get { return invalid; }
+            set { SetField(ref invalid, value); }
+        }
 
         /// <summary>
         /// 实体数据模型属性

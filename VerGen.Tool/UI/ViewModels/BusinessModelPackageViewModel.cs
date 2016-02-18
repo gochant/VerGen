@@ -98,19 +98,6 @@ namespace VerGen.Tool.UI.ViewModels
             return (ViewModelDefineViewModel)ViewModels.FirstOrDefault(d => d.Name == name);
         }
 
-        //public void LoadDynamicData(EntitySet set, bool callInternal = true)
-        //{
-        //    if (set == Set) return;
-
-        //    Set = set;
-        //    Display = set.ElementType.Documentation?.Summary ?? set.Name;
-
-        //    if (callInternal)
-        //    {
-        //        ((CommonModelDefineViewModel)CommonModel).LoadDynamicData(Set);
-        //    }
-        //}
-
         public void Initialize(EntitySet set)
         {
             if (set == Set) return;

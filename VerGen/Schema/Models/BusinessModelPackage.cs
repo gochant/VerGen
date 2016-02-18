@@ -23,6 +23,7 @@ namespace VerGen.Schema.Models
         private CrudUserStory crudUserStory;
         private EntitySet set;
         private string display;
+        private bool invalid;
 
         #endregion
 
@@ -33,6 +34,13 @@ namespace VerGen.Schema.Models
         {
             get { return set; }
             set { SetField(ref set, value); }
+        }
+
+        [XmlIgnore]
+        public bool Invalid
+        {
+            get { return invalid; }
+            set { SetField(ref invalid, value); }
         }
 
         /// <summary>

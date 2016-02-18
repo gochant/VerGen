@@ -26,7 +26,7 @@ namespace VerGen.Schema.Models
         /// 启用逆向映射
         /// </summary>
         [XmlAttribute]
-        public bool EnableReverseMap { get; set; } = false;
+        public bool EnableReverseMap { get; set; }
 
         /// <summary>
         /// 字段
@@ -44,17 +44,27 @@ namespace VerGen.Schema.Models
 
         public void AddField(string fieldName)
         {
+            var field = CreateOrUpdateField(fieldName);
+            if(Fields.Count(d => d.Name == fieldName) == 0)
+            {
+                Fields.Add(field);
+            }
+        }
+
+        public ViewModelFieldDefine CreateOrUpdateField(string fieldName)
+        {
             var exist = Fields.FirstOrDefault(d => d.Name == fieldName);
             if (exist == null)
             {
                 var field = new ViewModelFieldDefine();
                 field.Initialize(fieldName);
-                Fields.Add(field);
+                return field;
             }
             else
             {
                 exist.Initialize(fieldName);
             }
+            return exist;
         }
 
         public void AddFields(IEnumerable<string> fields, bool removeInvalid = false)

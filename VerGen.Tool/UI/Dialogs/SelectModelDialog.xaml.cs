@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using VerGen.Tool.UI.ViewModels;
 
 namespace VerGen.Tool.UI.Dialogs
@@ -16,9 +17,18 @@ namespace VerGen.Tool.UI.Dialogs
             SelectAllControl = ChkSelectAll;
         }
 
-        public SelectModelDialog(ObservableCollection<EntitySetListItem> fields) : this()
+        public SelectModelDialog(ObservableCollection<EntitySetListItem> fields, SelectionMode mode = SelectionMode.Multiple) : this()
         {
+            if(mode != SelectionMode.Single)
+            {
+                ChkSelectAll.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ChkSelectAll.Visibility = Visibility.Hidden;
+            }
             ListControl.ItemsSource = fields;
+            ListControl.SelectionMode = mode;
         }
 
 

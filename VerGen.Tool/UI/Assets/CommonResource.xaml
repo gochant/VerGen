@@ -12,6 +12,7 @@
     <converters:IsNullConverter x:Key="IsNullConverter"/>
     <converters:NotNullConverter x:Key="NotNullConverter"/>
     <converters:ObjectToVisibilityConverter x:Key="ObjectToVisibilityConverter"/>
+    <converters:InvalidToStringConverter x:Key="InvalidToStringConverter"/>
 
     <ControlTemplate x:Key="PanelDefault" TargetType="GroupBox">
         <Grid>

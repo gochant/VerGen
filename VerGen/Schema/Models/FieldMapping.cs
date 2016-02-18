@@ -8,7 +8,7 @@ namespace VerGen.Schema.Models
         /// 作为表达式
         /// </summary>
         [XmlAttribute]
-        public bool IsUsedAsExpression { get; set; }
+        public bool IsUsedAsExpression { get; set; } = true;
 
         /// <summary>
         /// 代码

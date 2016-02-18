@@ -12,13 +12,7 @@ namespace VerGen.Tool.UI.ViewModels
     public class ModelFieldDefineViewModel : ModelFieldDefine
     {
 
-        #region Properties, Indexers
-
-
-
-        #endregion
-
-        #region 方法
+        #region Methods
 
         /// <summary>
         /// 初始化
@@ -44,7 +38,8 @@ namespace VerGen.Tool.UI.ViewModels
         public void Initialize(string name, string type = "string", string display = null)
         {
             Name = name;
-            Display.Name = display ?? Name;
+            Display.Name = (Display.Name == name || string.IsNullOrWhiteSpace(Display.Name))
+                ? (display ?? Name) : Display.Name;
             Type = type;
         }
 

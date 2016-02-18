@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Core.Metadata.Edm;
+﻿using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -34,6 +35,12 @@ namespace VerGen.Tool.UI.ViewModels
         [XmlIgnore]
         public ICommand AddFieldCommand => new RelayCommand(AddField);
 
+        [XmlIgnore]
+        public ICommand SyncCommand => new RelayCommand(Sync);
+
+        [XmlIgnore]
+        public ICommand FixedFieldCommand => new RelayCommand(FixedField);
+
         #endregion
 
         #endregion
@@ -62,6 +69,29 @@ namespace VerGen.Tool.UI.ViewModels
             }
         }
 
+        public void Sync()
+        {
+            Initialize();
+        }
+
+        public void FixedField()
+        {
+            var props = GetSimpleProperties().ToList();
+            var selectList = props.Select(d => new SelectListItem
+            {
+                Text = d.Documentation?.Summary,
+                Value = d.Name
+            });
+
+            var dlg = new SelectDbFieldDialog(selectList) {Owner = AppData.MainWindow};
+            dlg.ShowDialog();
+            if(dlg.DialogResult == true)
+            {
+                var fieldName = dlg.Selected;
+                CurrentField.Initialize(props.FirstOrDefault(d => d.Name == fieldName));
+            }
+        }
+
         public ModelFieldDefineViewModel AddField(string fieldName)
         {
             var field = CreateField(fieldName);
@@ -84,7 +114,7 @@ namespace VerGen.Tool.UI.ViewModels
         public void DeleteField(ModelFieldDefineViewModel field = null)
         {
             field = field ?? CurrentField;
-            if (field?.IsCalculated == false)
+            if (field?.IsCalculated == false && field?.Invalid == false)
             {
                 MessageBox.Show("非计算字段不能删除", string.Empty, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -111,11 +141,16 @@ namespace VerGen.Tool.UI.ViewModels
         //    }
         //}
 
-        public void Initialize(EntitySet set)
+        public void Initialize(EntitySet set = null)
         {
+            if (set != null)
+            {
+                EntitySet = set;
+            }
+
+            var hasHandleds = new List<string>();
             // TODO: 这里暂时没有处理复杂类型
-            foreach (var prop in set.ElementType.Properties
-                .Where(d => !d.IsComplexType))
+            foreach (var prop in GetSimpleProperties())
             {
                 var field = (ModelFieldDefineViewModel)Fields.FirstOrDefault(d => d.Name == prop.Name);
 
@@ -132,8 +167,19 @@ namespace VerGen.Tool.UI.ViewModels
                     Fields.Add(field);
                 }
 
+                hasHandleds.Add(field.Name);
             }
 
+            // 验证有效性
+            var invalidFields = Fields.Where(
+                d =>
+                    !hasHandleds.Contains(d.Name) &&
+                    (!d.IsCalculated || d.IsCalculated && !hasHandleds.Contains(d.AssociatedField)));
+
+            foreach (var field in invalidFields)
+            {
+                field.Invalid = true;
+            }
         }
 
         /// <summary>
@@ -142,6 +188,12 @@ namespace VerGen.Tool.UI.ViewModels
         public void ClearInvalidFields()
         {
 
+        }
+
+        private IEnumerable<EdmProperty> GetSimpleProperties()
+        {
+            return EntitySet.ElementType.Properties
+                .Where(d => !d.IsComplexType);
         }
 
         #endregion

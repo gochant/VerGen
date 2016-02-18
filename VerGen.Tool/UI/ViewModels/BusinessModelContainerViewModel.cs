@@ -68,17 +68,13 @@ namespace VerGen.Tool.UI.ViewModels
         public ICommand DeletePackageCommand => new RelayCommand(DeletePackage);
         public ICommand SaveCommand => new RelayCommand(SaveToFile);
 
+        public ICommand FixedPackageCommand => new RelayCommand(FixedPackage);
+
         #endregion
 
         #endregion
 
         #region Methods
-
-        public void LoadEdm(string edmPath = null)
-        {
-            var itemCollection = new EdmMetadataLoader().CreateEdmItemCollection(edmPath);
-            LoadEdm((EdmItemCollection)itemCollection);
-        }
 
         public List<PackageListItem> GetPackageSelectList()
         {
@@ -113,6 +109,21 @@ namespace VerGen.Tool.UI.ViewModels
             });
         }
 
+        public void FixedPackage()
+        {
+            var dlg = new SelectModelDialog(UnusedEntitySetList) { Owner = AppData.MainWindow };
+            dlg.ShowDialog();
+            if (dlg.DialogResult == true)
+            {
+                var name = dlg.Selected.FirstOrDefault();
+                if(name != null)
+                {
+                    var set = GetEntitySet(name);
+                    ((BusinessModelPackageViewModel) CurrentPackage).Initialize(set);
+                }
+            }
+        }
+
         public BusinessModelPackageViewModel CreatePackage(string name)
         {
             var set = GetEntitySet(name);
@@ -130,6 +141,14 @@ namespace VerGen.Tool.UI.ViewModels
         public BusinessModelPackage GetPackage(string name)
         {
             return Packages.FirstOrDefault(d => d.Name == name);
+        }
+
+        public void Sync()
+        {
+            foreach (var package in Packages)
+            {
+                ((CommonModelDefineViewModel) package.CommonModel).Sync();
+            }
         }
 
         public void SaveToFile()

@@ -13,6 +13,9 @@ namespace VerGen.Schema.Models
     {
         #region Properties, Indexers
 
+        [XmlIgnore]
+        public EntitySet EntitySet { get; set; }
+
         /// <summary>
         /// 字段列表
         /// </summary>
@@ -23,6 +26,7 @@ namespace VerGen.Schema.Models
 
         public void LoadDynamicData(EntitySet set)
         {
+            EntitySet = set;
             foreach (var field in Fields)
             {
                 var prop = set.ElementType.Properties.FirstOrDefault(d => d.Name == field.Name);

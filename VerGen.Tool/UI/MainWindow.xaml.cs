@@ -23,7 +23,7 @@ namespace VerGen.Tool.UI
             var bmFilePath = item.ProjectItem.Properties.Item("FullPath").Value.ToString();
 
             var container = Load(bmFilePath);
-
+            
             DataContext = container;
 
         }
@@ -41,6 +41,7 @@ namespace VerGen.Tool.UI
 
             container.EdmFilePath = relativePath;
             container.LoadEdm(edmFilePath);
+            container.Sync();
             return container;
         }
 

@@ -60,9 +60,18 @@ namespace VerGen.Schema.Models
         public void LoadEdm(EdmItemCollection edm)
         {
             Edm = edm;
+            var invalids = new List<string>();
             foreach (var package in Packages)
             {
-                package.LoadDynamicData(GetEntitySet(package.Name));
+                var set = GetEntitySet(package.Name);
+                if(set == null)
+                {
+                    package.Invalid = true;
+                }
+                else
+                {
+                    package.LoadDynamicData(set);
+                }
             }
         }
 
