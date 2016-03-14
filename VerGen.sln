@@ -3,9 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerGen", "VerGen\VerGen.csproj", "{AC2FB02D-BF26-4EC8-BBC6-54F2660F021B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C16E1CF-13D6-4FA9-8DCF-1F7F9522E221}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		..\..\..\Desktop\preview.png = ..\..\..\Desktop\preview.png
+		README.md = README.md
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerGen.Tool", "VerGen.Tool\VerGen.Tool.csproj", "{D4B07609-7C7F-437D-8EF2-13E4E72BEF74}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7ABF569F-DE6F-4D7D-9583-4845971A23D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerGen", "src\VerGen\VerGen.csproj", "{AC2FB02D-BF26-4EC8-BBC6-54F2660F021B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerGen.Tool", "src\VerGen.Tool\VerGen.Tool.csproj", "{D4B07609-7C7F-437D-8EF2-13E4E72BEF74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +33,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC2FB02D-BF26-4EC8-BBC6-54F2660F021B} = {7ABF569F-DE6F-4D7D-9583-4845971A23D2}
+		{D4B07609-7C7F-437D-8EF2-13E4E72BEF74} = {7ABF569F-DE6F-4D7D-9583-4845971A23D2}
 	EndGlobalSection
 EndGlobal

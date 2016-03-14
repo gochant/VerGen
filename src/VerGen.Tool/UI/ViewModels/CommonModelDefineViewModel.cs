@@ -83,9 +83,9 @@ namespace VerGen.Tool.UI.ViewModels
                 Value = d.Name
             });
 
-            var dlg = new SelectDbFieldDialog(selectList) {Owner = AppData.MainWindow};
+            var dlg = new SelectDbFieldDialog(selectList) { Owner = AppData.MainWindow };
             dlg.ShowDialog();
-            if(dlg.DialogResult == true)
+            if (dlg.DialogResult == true)
             {
                 var fieldName = dlg.Selected;
                 CurrentField.Initialize(props.FirstOrDefault(d => d.Name == fieldName));
